@@ -52,4 +52,15 @@ class AuthController extends Controller
         
         ]);
     }
+
+    public function logout(Request $request)
+    {
+        $request->user()->currentAccessToken()->delete(); 
+        //Obtiene la usuaria que esta haciendo la peticion,
+                         //obtiene el token activo en el inicio de sesino
+                                                //elimina ese token, asi la sesion queda cerrada y el token ya no sirve
+        return response()->json([
+            'message' => 'Sesion cerrada exitosamente',
+        ]);
+    }
 }
