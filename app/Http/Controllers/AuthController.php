@@ -19,6 +19,7 @@ class AuthController extends Controller
             'name' => $request->name,
             'phone' => $request->phone,
             'password' => Hash::make($request->password),
+            'role' => 'user', //en tonces por defecto toda cuenta nueva sera usuaria
         ]);
 
         $token = $user->createToken('alerta-rosa')->plainTextToken;
