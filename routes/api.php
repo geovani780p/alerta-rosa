@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\PanicAlertController;
 
 //Estas son las rutas publicas osea las que no requieren el token 
 Route::post('/register', [AuthController::class, 'register']);
@@ -17,8 +18,12 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
     //Rutas de contactos de emergencia
-    Route::get('/contacts', [ContactController::class, 'index']);
+    Route::get('/contacts', [Cont\actController::class, 'index']);
     Route::post('/contacts', [ContactController::class, 'store']);
     Route::delete('/contacts/{id}', [ContactController::class, 'destroy']);
+
+    Route::post('/panic', [PanicAlertController::class, 'trigger']);
+    Route::post('/panic/cancel', [PanicAlertController::class, 'cancel']);
+    Route::get('/panic/status', [PanicAlertController::class, 'status']);
     
 });

@@ -37,4 +37,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Contact::class);
     }
+
+    public function panicAlerts()
+    {
+        return $this->hasMany(PanicAlert::class);
+    }
 }
