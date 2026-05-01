@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PanicAlertController;
+use App\Http\Controllers\LocationController;
 
 //Estas son las rutas publicas osea las que no requieren el token 
 Route::post('/register', [AuthController::class, 'register']);
@@ -25,5 +26,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/panic', [PanicAlertController::class, 'trigger']);
     Route::post('/panic/cancel', [PanicAlertController::class, 'cancel']);
     Route::get('/panic/status', [PanicAlertController::class, 'status']);
+
+    Route::post('/location', [LocationController::class, 'store']);
+    Route::get('/location/history/{alertId}', [LocationController::class, 'history']);
     
 });
